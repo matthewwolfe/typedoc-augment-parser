@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "declaration": true,
+    "jsx": "react",
+    "lib": ["es2022"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "es2022",
+    "paths": {
+      "@pkg/*": ["*"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

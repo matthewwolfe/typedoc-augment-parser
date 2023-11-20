@@ -1,0 +1,23 @@
+{
+  "name": "@typedoc/augment-parser",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.9.2",
+    "terser": "^5.24.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
+  },
+  "dependencies": {
+    "typedoc": "^0.25.3"
+  }
+}
