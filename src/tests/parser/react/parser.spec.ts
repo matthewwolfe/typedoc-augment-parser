@@ -97,4 +97,24 @@ describe('parse', () => {
       "type?: 'inner'",
     ]);
   });
+
+  test('interface property not deprecated', () => {
+    const child = parsed.findChildByName('FormProps');
+
+    if (!isInterface(child)) {
+      throw new Error('child must be a function');
+    }
+
+    expect(child.property('labelAlign')?.isDeprecated()).toEqual(false);
+  });
+
+  test('interface property deprecated', () => {
+    const child = parsed.findChildByName('FormProps');
+
+    if (!isInterface(child)) {
+      throw new Error('child must be a function');
+    }
+
+    expect(child.property('hideRequiredMark')?.isDeprecated()).toEqual(true);
+  });
 });
