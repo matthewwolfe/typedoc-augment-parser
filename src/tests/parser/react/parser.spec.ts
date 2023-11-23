@@ -64,7 +64,7 @@ describe('parse', () => {
     const child = parsed.findChildByName(name);
 
     if (!isInterface(child)) {
-      throw new Error('child must be a function');
+      throw new Error('child must be an interface');
     }
 
     const properties = child
@@ -100,9 +100,8 @@ describe('parse', () => {
 
   test('interface property not deprecated', () => {
     const child = parsed.findChildByName('FormProps');
-
     if (!isInterface(child)) {
-      throw new Error('child must be a function');
+      throw new Error('child must be an interface');
     }
 
     expect(child.property('labelAlign')?.isDeprecated()).toEqual(false);
@@ -112,7 +111,7 @@ describe('parse', () => {
     const child = parsed.findChildByName('FormProps');
 
     if (!isInterface(child)) {
-      throw new Error('child must be a function');
+      throw new Error('child must be an interface');
     }
 
     expect(child.property('hideRequiredMark')?.isDeprecated()).toEqual(true);

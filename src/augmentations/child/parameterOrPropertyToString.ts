@@ -1,4 +1,4 @@
-import { typeToString } from './typeToString';
+import { typeToString } from './typeToString/typeToString';
 
 import type { JSONOutput } from 'typedoc';
 

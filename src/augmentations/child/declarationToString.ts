@@ -1,7 +1,7 @@
 import { ReflectionKind } from 'typedoc';
 import { parametersToString } from './parametersToString';
 import { typeParametersToString } from './typeParametersToString';
-import { typeToString } from './typeToString';
+import { typeToString } from './typeToString/typeToString';
 
 import type { JSONOutput } from 'typedoc';
 

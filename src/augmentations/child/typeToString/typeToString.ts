@@ -97,7 +97,7 @@ function typeToString(type: JSONOutput.SomeType | undefined): string {
     }
 
     case 'union': {
-      return '';
+      return type.types.map((type) => typeToString(type)).join(' | ');
     }
 
     case 'unknown': {

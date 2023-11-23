@@ -3,7 +3,7 @@ import { declarationToString } from './declarationToString';
 import { isDeprecated } from './isDeprecated';
 import { isProperty } from './isKind';
 import { parameterOrPropertyToString } from './parameterOrPropertyToString';
-import { typeToString } from './typeToString';
+import { typeToString } from './typeToString/typeToString';
 
 import type { JSONOutput } from 'typedoc';
 import type { AugmentedDeclarationReflection } from './child.type';
