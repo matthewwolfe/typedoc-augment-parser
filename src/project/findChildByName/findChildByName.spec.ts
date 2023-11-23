@@ -7,7 +7,7 @@ import type { FunctionDeclaration } from '@pkg/types/declarations';
 
 describe('findChildByName', () => {
   test('function', () => {
-    const result = findChildByName(project, 'capitalize');
+    const result = findChildByName(project)('capitalize');
 
     if (!isFunction(result)) {
       throw new Error('child must be a function');
@@ -17,7 +17,7 @@ describe('findChildByName', () => {
   });
 
   test('function with generic', () => {
-    const result = findChildByName<FunctionDeclaration>(project, 'capitalize');
+    const result = findChildByName(project)<FunctionDeclaration>('capitalize');
 
     expect(result?.typeToString()).toEqual('(string: string) => string');
   });

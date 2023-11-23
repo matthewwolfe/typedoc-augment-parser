@@ -67,7 +67,7 @@ const project: JSONOutput.ProjectReflection = {
 
 describe('findChildById', () => {
   test('function', () => {
-    const result = findChildById(project, 1);
+    const result = findChildById(project)(1);
 
     if (!isFunction(result)) {
       throw new Error('child must be a function');
@@ -77,7 +77,7 @@ describe('findChildById', () => {
   });
 
   test('function with generic', () => {
-    const result = findChildById<FunctionDeclaration>(project, 1);
+    const result = findChildById(project)<FunctionDeclaration>(1);
 
     expect(result?.typeToString()).toEqual('(string: string) => string');
   });

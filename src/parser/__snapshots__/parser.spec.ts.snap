@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`parser > function 1`] = `"(props: MentionProps & RefAttributes<MentionsRef>) => React.ReactNode"`;
+
+exports[`parser > interface 1`] = `
+"interface MentionProps {
+loading?: boolean;
+options?: DataDrivenOptionProps[];
+popupClassName?: string;
+rootClassName?: string;
+status?: '' | 'error' | 'warning'
+}"
+`;
+
+exports[`parser > type alias 1`] = `
+"MenuRef: {
+focus: (options?: FocusOptions) => void,
+menu: MenuRef | null
+}"
+`;

@@ -27,19 +27,5 @@ describe('augmentDeclaration', () => {
         'AlignType'
       );
     });
-
-    test('augments variable', () => {
-      const variable = (project?.children || []).find(
-        (child) => child.id === 8403
-      );
-
-      if (!variable) {
-        throw new Error('Unable to find variable');
-      }
-
-      const result = augment(project, variable);
-
-      console.log(result.typeToString());
-    });
   });
 });

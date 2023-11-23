@@ -3,14 +3,15 @@ import { declarationToString } from '@pkg/declarations';
 import type { JSONOutput } from 'typedoc';
 
 interface Options {
+  indentCount: number;
   rootName: string;
 }
 
 function someTypeToString(
   type: JSONOutput.SomeType | undefined,
-  options?: Options
+  options?: Partial<Options>
 ): string {
-  const { rootName = '' } = options || {};
+  const { indentCount = 0, rootName = '' } = options || {};
 
   if (!type) {
     return '';
@@ -46,6 +47,10 @@ function someTypeToString(
     }
 
     case 'literal': {
+      if (type.value === null) {
+        return 'null';
+      }
+
       if (typeof type.value === 'string') {
         return `'${type.value}'`;
       }
@@ -66,7 +71,7 @@ function someTypeToString(
     }
 
     case 'query': {
-      return '';
+      return `typeof ${someTypeToString(type.queryType)}`;
     }
 
     case 'reference': {
@@ -86,7 +91,10 @@ function someTypeToString(
     }
 
     case 'reflection': {
-      return declarationToString(type.declaration, { rootName });
+      return declarationToString(type.declaration, {
+        indentCount,
+        rootName,
+      });
     }
 
     case 'rest': {
@@ -98,7 +106,11 @@ function someTypeToString(
     }
 
     case 'tuple': {
-      return '';
+      const elementTypes = (type.elements || [])
+        .map((element) => someTypeToString(element))
+        .join(', ');
+
+      return `[${elementTypes}]`;
     }
 
     case 'namedTupleMember': {
@@ -106,7 +118,7 @@ function someTypeToString(
     }
 
     case 'typeOperator': {
-      return '';
+      return `${type.operator} ${someTypeToString(type.target)}`;
     }
 
     case 'union': {
@@ -114,7 +126,7 @@ function someTypeToString(
     }
 
     case 'unknown': {
-      return '';
+      return type.name;
     }
 
     default:

@@ -2,19 +2,19 @@ import { ReflectionKind } from 'typedoc';
 import { propertyToString } from '@pkg/properties';
 import { parametersToString, typeParametersToString } from '@pkg/parameters';
 import { someTypeToString } from '@pkg/type';
+import { indent } from '@pkg/utils/indent';
 
 import type { JSONOutput } from 'typedoc';
 
 interface Options {
+  indentCount: number;
   rootName: string;
 }
 
 function declarationToString(
   declaration: JSONOutput.DeclarationReflection,
-  options?: Options
+  { indentCount = 0, rootName = '' }: Partial<Options> = {}
 ): string {
-  const { rootName = '' } = options || {};
-
   switch (declaration.kind) {
     case ReflectionKind.Function: {
       return (declaration.signatures || [])
@@ -29,18 +29,34 @@ function declarationToString(
     }
 
     case ReflectionKind.Interface: {
+      if (declaration.children) {
+        return [
+          `interface ${rootName} {`,
+          declaration.children
+            .filter((child) => !child.flags.isExternal)
+            .map((child) =>
+              declarationToString(child, {
+                indentCount,
+                rootName,
+              })
+            )
+            .join(';\n'),
+          '}',
+        ].join('\n');
+      }
+
       return declaration.name;
     }
 
     case ReflectionKind.Property: {
-      return propertyToString(declaration);
+      return indent(propertyToString(declaration), indentCount);
     }
 
     case ReflectionKind.TypeAlias: {
-      const typeParams = typeParametersToString(declaration.typeParameters);
-      const type = someTypeToString(declaration.type);
-
-      return [`${declaration.name}${typeParams}: {`, type, '}'].join('\n');
+      return someTypeToString(declaration.type, {
+        rootName: declaration.name,
+        indentCount,
+      });
     }
 
     case ReflectionKind.TypeLiteral: {
@@ -48,7 +64,12 @@ function declarationToString(
         return [
           `${rootName}: {`,
           declaration.children
-            .map((child) => declarationToString(child))
+            .map((child) =>
+              declarationToString(child, {
+                indentCount,
+                rootName,
+              })
+            )
             .join(',\n'),
           '}',
         ].join('\n');
@@ -68,6 +89,7 @@ function declarationToString(
     case ReflectionKind.Variable: {
       return someTypeToString(declaration.type, {
         rootName: declaration.name,
+        indentCount,
       });
     }
 

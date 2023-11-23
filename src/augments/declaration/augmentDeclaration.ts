@@ -32,7 +32,10 @@ function augmentDeclaration(
         isDeprecated: () => isDeprecated(declaration),
         property,
         properties,
-        typeToString: () => '',
+        typeToString: () =>
+          declarationToString(declaration, {
+            rootName: declaration.name,
+          }),
       };
     }
 

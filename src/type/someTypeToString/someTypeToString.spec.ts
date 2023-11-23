@@ -28,6 +28,63 @@ describe('typeToString', () => {
       expect(result).toEqual('number | string | boolean');
     });
 
+    test('literal - boolean', () => {
+      const result = someTypeToString({
+        type: 'literal',
+        value: true,
+      });
+
+      expect(result).toEqual('true');
+    });
+
+    test('literal - null', () => {
+      const result = someTypeToString({
+        type: 'literal',
+        value: null,
+      });
+
+      expect(result).toEqual('null');
+    });
+
+    test('literal - number', () => {
+      const result = someTypeToString({
+        type: 'literal',
+        value: 10,
+      });
+
+      expect(result).toEqual('10');
+    });
+
+    test('literal - string', () => {
+      const result = someTypeToString({
+        type: 'literal',
+        value: 'string-literal',
+      });
+
+      expect(result).toEqual("'string-literal'");
+    });
+
+    test('query', () => {
+      const result = someTypeToString({
+        type: 'typeOperator',
+        operator: 'keyof',
+        target: {
+          type: 'query',
+          queryType: {
+            type: 'reference',
+            target: {
+              sourceFileName: 'mock-file.ts',
+              qualifiedName: 'ColorFormat',
+            },
+            name: 'Example',
+            package: 'mock-package',
+          },
+        },
+      });
+
+      expect(result).toEqual('keyof typeof Example');
+    });
+
     test('references', () => {
       const result = someTypeToString({
         type: 'union',
@@ -63,6 +120,42 @@ describe('typeToString', () => {
       });
 
       expect(result).toEqual('number | Partial<Record<Breakpoint, number>>');
+    });
+
+    test('tuple', () => {
+      const result = someTypeToString({
+        type: 'tuple',
+        elements: [
+          {
+            type: 'union',
+            types: [
+              {
+                type: 'intrinsic',
+                name: 'string',
+              },
+              {
+                type: 'intrinsic',
+                name: 'number',
+              },
+            ],
+          },
+          {
+            type: 'union',
+            types: [
+              {
+                type: 'intrinsic',
+                name: 'string',
+              },
+              {
+                type: 'intrinsic',
+                name: 'number',
+              },
+            ],
+          },
+        ],
+      });
+
+      expect(result).toEqual('[string | number, string | number]');
     });
   });
 });
