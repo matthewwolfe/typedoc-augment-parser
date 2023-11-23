@@ -32,7 +32,7 @@ function child(
       return {
         ...declaration,
         isDeprecated: isDeprecated(declaration),
-        typeToString: declarationToString(declaration),
+        typeToString: () => declarationToString(declaration),
       };
     }
 
@@ -42,6 +42,13 @@ function child(
         isDeprecated: isDeprecated(declaration),
         toString: () => parameterOrPropertyToString(declaration),
         typeToString: () => typeToString(declaration.type),
+      };
+    }
+
+    case ReflectionKind.TypeAlias: {
+      return {
+        ...declaration,
+        typeToString: () => declarationToString(declaration),
       };
     }
 

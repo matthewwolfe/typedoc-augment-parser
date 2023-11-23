@@ -3,7 +3,7 @@ import { isFunction, isInterface } from '@pkg/augmentations/child';
 import { parser } from '@pkg/parser';
 import { project } from './mock-data';
 
-describe.only('parse', () => {
+describe('parse', () => {
   const parsed = parser.parse(project);
 
   test('name and version', () => {
@@ -117,7 +117,7 @@ describe.only('parse', () => {
     expect(child.property('hideRequiredMark')?.isDeprecated()).toEqual(true);
   });
 
-  test.only('interface function', () => {
+  test('interface function', () => {
     const child = parsed.findChildByName('CountdownProps');
 
     if (!isInterface(child)) {

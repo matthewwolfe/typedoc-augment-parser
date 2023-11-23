@@ -6,6 +6,7 @@ import type {
   FunctionDeclarationReflection,
   InterfaceDeclarationReflection,
   PropertyDeclarationReflection,
+  TypeAliasDeclarationReflection,
 } from './child.type';
 
 function isClass(
@@ -32,4 +33,10 @@ function isProperty(
   return declaration?.kind === ReflectionKind.Property;
 }
 
-export { isClass, isFunction, isInterface, isProperty };
+function isTypeAlias(
+  declaration: JSONOutput.DeclarationReflection | undefined
+): declaration is TypeAliasDeclarationReflection {
+  return declaration?.kind === ReflectionKind.TypeAlias;
+}
+
+export { isClass, isFunction, isInterface, isProperty, isTypeAlias };

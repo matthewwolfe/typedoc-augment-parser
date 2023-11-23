@@ -1,3 +1,4 @@
+import { declarationToString } from '../declarationToString';
 import { parametersToString } from '../parametersToString';
 import { typeParametersToString } from '../typeParametersToString';
 
@@ -76,15 +77,7 @@ function typeToString(type: JSONOutput.SomeType | undefined): string {
     }
 
     case 'reflection': {
-      return (type.declaration.signatures || [])
-        .map((signature) => {
-          const typeParams = typeParametersToString(signature.typeParameter);
-          const params = parametersToString(signature.parameters);
-          const returnType = typeToString(signature.type);
-
-          return `${typeParams}(${params}) => ${returnType}`;
-        })
-        .join(', ');
+      return declarationToString(type.declaration);
     }
 
     case 'rest': {

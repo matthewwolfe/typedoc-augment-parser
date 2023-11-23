@@ -23,8 +23,14 @@ export interface PropertyDeclarationReflection
   typeToString: () => string;
 }
 
+export interface TypeAliasDeclarationReflection
+  extends JSONOutput.DeclarationReflection {
+  typeToString: () => string;
+}
+
 export type AugmentedDeclarationReflection =
   | ClassDeclarationReflection
   | FunctionDeclarationReflection
   | InterfaceDeclarationReflection
-  | PropertyDeclarationReflection;
+  | PropertyDeclarationReflection
+  | TypeAliasDeclarationReflection;
