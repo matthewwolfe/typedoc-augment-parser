@@ -1,3 +1,10 @@
-export { isClass, isFunction, isInterface } from '@pkg/declarations';
+export {
+  isClass,
+  isFunction,
+  isInterface,
+  isProperty,
+  isReference,
+  isTypeAlias,
+} from '@pkg/declarations';
 
 export { parser } from '@pkg/parser';
