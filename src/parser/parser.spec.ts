@@ -19,13 +19,12 @@ describe('parser', () => {
   test('interface', () => {
     const child = parsed.findChildByName<InterfaceDeclaration>('MentionProps');
 
-    console.log(child);
-
     expect(child?.typeToString()).toMatchSnapshot();
   });
 
   test('type alias', () => {
     const child = parsed.findChildByName('MenuRef');
+
     expect(child?.typeToString()).toMatchSnapshot();
   });
 });
