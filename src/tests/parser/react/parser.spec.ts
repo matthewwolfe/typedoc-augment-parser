@@ -3,7 +3,7 @@ import { isFunction, isInterface } from '@pkg/augmentations/child';
 import { parser } from '@pkg/parser';
 import { project } from './mock-data';
 
-describe('parse', () => {
+describe.only('parse', () => {
   const parsed = parser.parse(project);
 
   test('name and version', () => {
@@ -85,7 +85,7 @@ describe('parse', () => {
       'hoverable?: boolean',
       'id?: string',
       'loading?: boolean',
-      'onTabChange?: ',
+      'onTabChange?: (key: string) => void',
       'prefixCls?: string',
       'rootClassName?: string',
       'size?: CardSize',
@@ -115,5 +115,17 @@ describe('parse', () => {
     }
 
     expect(child.property('hideRequiredMark')?.isDeprecated()).toEqual(true);
+  });
+
+  test.only('interface function', () => {
+    const child = parsed.findChildByName('CountdownProps');
+
+    if (!isInterface(child)) {
+      throw new Error('child must be an interface');
+    }
+
+    expect(child.property('onChange')?.typeToString()).toEqual(
+      '(value?: valueType) => void'
+    );
   });
 });
