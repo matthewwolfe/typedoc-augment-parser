@@ -1,8 +1,7 @@
 import { ReflectionKind } from 'typedoc';
-import { parameterOrPropertyToString } from '../../properties/propertyToString/propertyToString';
-import { parametersToString } from '../../parameters/parametersToString/parametersToString';
-import { typeParametersToString } from '../../parameters/typeParametersToString/typeParametersToString';
-import { typeToString } from '../../type/typeToString/typeToString';
+import { propertyToString } from '@pkg/properties';
+import { parametersToString, typeParametersToString } from '@pkg/parameters';
+import { typeToString } from '@pkg/type';
 
 import type { JSONOutput } from 'typedoc';
 
@@ -27,7 +26,7 @@ function declarationToString(
     }
 
     case ReflectionKind.Property: {
-      return parameterOrPropertyToString(declaration);
+      return propertyToString(declaration);
     }
 
     case ReflectionKind.TypeAlias: {

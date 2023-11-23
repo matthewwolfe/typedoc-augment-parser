@@ -1,6 +1,4 @@
-import { declarationToString } from '../../declarations/declarationToString';
-import { parametersToString } from '../../parameters/parametersToString/parametersToString';
-import { typeParametersToString } from '../../parameters/typeParametersToString/typeParametersToString';
+import { declarationToString } from '@pkg/declarations';
 
 import type { JSONOutput } from 'typedoc';
 

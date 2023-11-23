@@ -6,7 +6,8 @@
   "exports": "./dist/index.js",
   "scripts": {
     "build": "tsup",
-    "test": "vitest"
+    "test": "vitest",
+    "typecheck": "tsc"
   },
   "author": "",
   "license": "MIT",

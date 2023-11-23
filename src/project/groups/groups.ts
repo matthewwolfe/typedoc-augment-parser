@@ -2,11 +2,11 @@ import { augmentDeclaration } from '@pkg/augments/declaration';
 import { nonNullable } from '@pkg/utils/nonNullable';
 
 import type { JSONOutput } from 'typedoc';
-import type { AugmentedDeclarationReflection } from '@pkg/types/declarations';
+import type { AugmentedDeclaration } from '@pkg/types/declarations';
 
 export interface ProjectGroup {
   title: string;
-  children: AugmentedDeclarationReflection[];
+  children: AugmentedDeclaration[];
 }
 
 function groups(project: JSONOutput.ProjectReflection): ProjectGroup[] {

@@ -1,9 +1,9 @@
 import { augmentDeclaration } from '@pkg/augments/declaration';
 
 import type { JSONOutput } from 'typedoc';
-import type { AugmentedDeclarationReflection } from '@pkg/types/declarations';
+import type { AugmentedDeclaration } from '@pkg/types/declarations';
 
-function findChildByName<T extends AugmentedDeclarationReflection>(
+function findChildByName<T extends AugmentedDeclaration>(
   project: JSONOutput.ProjectReflection,
   name: string
 ): T | undefined {

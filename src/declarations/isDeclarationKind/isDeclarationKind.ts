@@ -2,47 +2,48 @@ import { ReflectionKind } from 'typedoc';
 
 import type { JSONOutput } from 'typedoc';
 import type {
-  ClassDeclarationReflection,
-  FunctionDeclarationReflection,
-  InterfaceDeclarationReflection,
-  PropertyDeclarationReflection,
-  ReferenceDeclarationReflection,
-  TypeAliasDeclarationReflection,
+  AugmentedDeclaration,
+  ClassDeclaration,
+  FunctionDeclaration,
+  InterfaceDeclaration,
+  PropertyDeclaration,
+  ReferenceDeclaration,
+  TypeAliasDeclaration,
 } from '@pkg/types/declarations';
 
 function isClass(
   declaration: JSONOutput.DeclarationReflection | undefined
-): declaration is ClassDeclarationReflection {
+): declaration is ClassDeclaration {
   return declaration?.kind === ReflectionKind.Class;
 }
 
 function isFunction(
   declaration: JSONOutput.DeclarationReflection | undefined
-): declaration is FunctionDeclarationReflection {
+): declaration is FunctionDeclaration {
   return declaration?.kind === ReflectionKind.Function;
 }
 
 function isInterface(
   declaration: JSONOutput.DeclarationReflection | undefined
-): declaration is InterfaceDeclarationReflection {
+): declaration is InterfaceDeclaration {
   return declaration?.kind === ReflectionKind.Interface;
 }
 
 function isProperty(
   declaration: JSONOutput.DeclarationReflection | undefined
-): declaration is PropertyDeclarationReflection {
+): declaration is PropertyDeclaration {
   return declaration?.kind === ReflectionKind.Property;
 }
 
-function isReference(
+function isReference<T extends AugmentedDeclaration>(
   declaration: JSONOutput.DeclarationReflection | undefined
-): declaration is ReferenceDeclarationReflection {
+): declaration is ReferenceDeclaration<T> {
   return declaration?.kind === ReflectionKind.Reference;
 }
 
 function isTypeAlias(
   declaration: JSONOutput.DeclarationReflection | undefined
-): declaration is TypeAliasDeclarationReflection {
+): declaration is TypeAliasDeclaration {
   return declaration?.kind === ReflectionKind.TypeAlias;
 }
 

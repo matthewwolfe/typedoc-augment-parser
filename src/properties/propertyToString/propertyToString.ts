@@ -2,12 +2,7 @@ import { typeToString } from '@pkg/type/typeToString';
 
 import type { JSONOutput } from 'typedoc';
 
-function propertyToString(
-  parameter: Pick<
-    JSONOutput.DeclarationReflection,
-    'defaultValue' | 'flags' | 'name' | 'type'
-  >
-) {
+function propertyToString(parameter: JSONOutput.DeclarationReflection) {
   if (!parameter.type) {
     return '';
   }

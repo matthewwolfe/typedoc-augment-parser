@@ -1,11 +1,11 @@
-import type { AugmentedDeclarationReflection } from '@pkg/types/declarations';
+import type { AugmentedDeclaration } from '@pkg/types/declarations';
 
 const DEPRECATED_TAG = '@deprecated';
 
 /**
  * Test if a declaration is deprecated using block comment tag
  */
-function isDeprecated(child: Pick<AugmentedDeclarationReflection, 'comment'>) {
+function isDeprecated(child: Pick<AugmentedDeclaration, 'comment'>) {
   return (child.comment?.blockTags || []).some(
     (block) => block.tag.toLowerCase() === DEPRECATED_TAG
   );

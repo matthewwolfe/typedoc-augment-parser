@@ -1,11 +1,11 @@
 import { describe, expect, test } from 'vitest';
 import { isDeprecated } from './isDeprecated';
 
-import type { AugmentedDeclarationReflection } from '@pkg/types/declarations';
+import type { AugmentedDeclaration } from '@pkg/types/declarations';
 
 describe('isDeprecated', () => {
   test('true when tag is set', () => {
-    const child: Pick<AugmentedDeclarationReflection, 'comment'> = {
+    const child: Pick<AugmentedDeclaration, 'comment'> = {
       comment: {
         summary: [],
         blockTags: [
@@ -34,7 +34,7 @@ describe('isDeprecated', () => {
   });
 
   test('false when no tags', () => {
-    const child: Pick<AugmentedDeclarationReflection, 'comment'> = {
+    const child: Pick<AugmentedDeclaration, 'comment'> = {
       comment: {
         summary: [],
         blockTags: [],
@@ -45,7 +45,7 @@ describe('isDeprecated', () => {
   });
 
   test('false when other tags', () => {
-    const child: Pick<AugmentedDeclarationReflection, 'comment'> = {
+    const child: Pick<AugmentedDeclaration, 'comment'> = {
       comment: {
         summary: [],
         blockTags: [

@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest';
-import { isFunction } from '@pkg/declarations/isDeclarationKind';
+import { isFunction } from '@pkg/declarations';
 import { findChildById } from './findChildById';
 
 import type { JSONOutput } from 'typedoc';
-import type { FunctionDeclarationReflection } from '@pkg/types/declarations';
+import type { FunctionDeclaration } from '@pkg/types/declarations';
 
 const project: JSONOutput.ProjectReflection = {
   id: 0,
@@ -77,7 +77,7 @@ describe('findChildById', () => {
   });
 
   test('function with generic', () => {
-    const result = findChildById<FunctionDeclarationReflection>(project, 1);
+    const result = findChildById<FunctionDeclaration>(project, 1);
 
     expect(result?.typeToString()).toEqual('(string: string) => string');
   });
