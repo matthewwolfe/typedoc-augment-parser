@@ -2,7 +2,7 @@ import { ReflectionKind } from 'typedoc';
 import { isDeprecated } from '@pkg/comments';
 import { declarationToString, isProperty } from '@pkg/declarations';
 import { propertyToString } from '@pkg/properties';
-import { typeToString } from '@pkg/type/typeToString';
+import { someTypeToString } from '@pkg/type';
 
 import type { JSONOutput } from 'typedoc';
 import type {
@@ -44,12 +44,26 @@ function augmentDeclaration(
       };
     }
 
+    case ReflectionKind.Namespace: {
+      return {
+        ...declaration,
+        typeToString: () => someTypeToString(declaration.type),
+      };
+    }
+
     case ReflectionKind.Property: {
       return {
         ...declaration,
         isDeprecated: () => isDeprecated(declaration),
         toString: () => propertyToString(declaration),
-        typeToString: () => typeToString(declaration.type),
+        typeToString: () => someTypeToString(declaration.type),
+      };
+    }
+
+    case ReflectionKind.Variable: {
+      return {
+        ...declaration,
+        typeToString: () => declarationToString(declaration),
       };
     }
 
@@ -61,7 +75,7 @@ function augmentDeclaration(
     }
 
     default: {
-      return declaration;
+      throw new Error(`Unable to augment declaration id: ${declaration.kind}`);
     }
   }
 }
@@ -83,6 +97,7 @@ function augmentReference<T extends AugmentedDeclaration>(
   return {
     ...declaration,
     reference: augment<T>(project, target),
+    typeToString: () => '',
   };
 }
 

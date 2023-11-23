@@ -1,10 +1,10 @@
 import { describe, expect, test } from 'vitest';
-import { typeToString } from './typeToString';
+import { someTypeToString } from './someTypeToString';
 
 describe('typeToString', () => {
   describe('union', () => {
     test('intrinsic', () => {
-      const result = typeToString({
+      const result = someTypeToString({
         type: 'union',
         types: [
           { type: 'intrinsic', name: 'number' },
@@ -16,7 +16,7 @@ describe('typeToString', () => {
     });
 
     test('intrinsic multiple', () => {
-      const result = typeToString({
+      const result = someTypeToString({
         type: 'union',
         types: [
           { type: 'intrinsic', name: 'number' },
@@ -29,7 +29,7 @@ describe('typeToString', () => {
     });
 
     test('references', () => {
-      const result = typeToString({
+      const result = someTypeToString({
         type: 'union',
         types: [
           { type: 'intrinsic', name: 'number' },

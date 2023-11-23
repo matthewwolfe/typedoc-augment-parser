@@ -1,4 +1,4 @@
-import { typeToString } from '@pkg/type/typeToString';
+import { someTypeToString } from '@pkg/type';
 
 import type { JSONOutput } from 'typedoc';
 
@@ -12,7 +12,7 @@ function propertyToString(parameter: JSONOutput.DeclarationReflection) {
       ? '?'
       : '';
 
-  const parameterType = typeToString(parameter.type);
+  const parameterType = someTypeToString(parameter.type);
 
   return `${parameter.name}${optional}: ${parameterType}`;
 }

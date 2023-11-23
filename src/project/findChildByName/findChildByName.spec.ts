@@ -1,9 +1,8 @@
 import { describe, expect, test } from 'vitest';
 import { isFunction } from '@pkg/declarations';
-import { project } from '@pkg/mocks/react-library';
+import { project } from '@pkg/mocks/typescript-library';
 import { findChildByName } from './findChildByName';
 
-import type { JSONOutput } from 'typedoc';
 import type { FunctionDeclaration } from '@pkg/types/declarations';
 
 describe('findChildByName', () => {

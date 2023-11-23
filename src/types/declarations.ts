@@ -5,33 +5,33 @@ export type ProjectChildren = JSONOutput.ProjectReflection['children'];
 export type DeclarationVariant =
   NonNullable<ProjectChildren>[number]['variant'];
 
-export interface ClassDeclaration extends JSONOutput.DeclarationReflection {}
-
-export interface FunctionDeclaration extends JSONOutput.DeclarationReflection {
-  isDeprecated: () => boolean;
+interface Declaration extends JSONOutput.DeclarationReflection {
   typeToString: () => string;
 }
 
-export interface InterfaceDeclaration extends JSONOutput.DeclarationReflection {
+export interface ClassDeclaration extends Declaration {}
+
+export interface FunctionDeclaration extends Declaration {
+  isDeprecated: () => boolean;
+}
+
+export interface InterfaceDeclaration extends Declaration {
   isDeprecated: () => boolean;
   property: (name: string) => PropertyDeclaration | undefined;
   properties: () => PropertyDeclaration[];
 }
 
-export interface PropertyDeclaration extends JSONOutput.DeclarationReflection {
+export interface PropertyDeclaration extends Declaration {
   isDeprecated: () => boolean;
   toString: () => string;
-  typeToString: () => string;
 }
 
 export interface ReferenceDeclaration<T extends AugmentedDeclaration>
-  extends JSONOutput.DeclarationReflection {
+  extends Declaration {
   reference: T;
 }
 
-export interface TypeAliasDeclaration extends JSONOutput.DeclarationReflection {
-  typeToString: () => string;
-}
+export interface TypeAliasDeclaration extends Declaration {}
 
 export type AugmentedDeclaration =
   | ClassDeclaration

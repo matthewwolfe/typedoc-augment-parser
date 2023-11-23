@@ -2,22 +2,31 @@ import { declarationToString } from '@pkg/declarations';
 
 import type { JSONOutput } from 'typedoc';
 
-function typeToString(type: JSONOutput.SomeType | undefined): string {
+interface Options {
+  rootName: string;
+}
+
+function someTypeToString(
+  type: JSONOutput.SomeType | undefined,
+  options?: Options
+): string {
+  const { rootName = '' } = options || {};
+
   if (!type) {
     return '';
   }
 
   switch (type.type) {
     case 'array': {
-      return `${typeToString(type.elementType)}[]`;
+      return `${someTypeToString(type.elementType)}[]`;
     }
     case 'conditional': {
       return '';
     }
 
     case 'indexedAccess': {
-      const objectType = typeToString(type.objectType);
-      const indexType = typeToString(type.indexType);
+      const objectType = someTypeToString(type.objectType);
+      const indexType = someTypeToString(type.indexType);
 
       return `${objectType}[${indexType}]`;
     }
@@ -27,7 +36,9 @@ function typeToString(type: JSONOutput.SomeType | undefined): string {
     }
 
     case 'intersection': {
-      return type.types.map(typeToString).join(' & ');
+      return type.types
+        .map((innerType) => someTypeToString(innerType))
+        .join(' & ');
     }
 
     case 'intrinsic': {
@@ -61,7 +72,7 @@ function typeToString(type: JSONOutput.SomeType | undefined): string {
     case 'reference': {
       if (type.typeArguments) {
         const typeArguments = type.typeArguments
-          .map((type) => typeToString(type))
+          .map((type) => someTypeToString(type))
           .join(', ');
 
         return `${type.name}<${typeArguments}>`;
@@ -75,7 +86,7 @@ function typeToString(type: JSONOutput.SomeType | undefined): string {
     }
 
     case 'reflection': {
-      return declarationToString(type.declaration);
+      return declarationToString(type.declaration, { rootName });
     }
 
     case 'rest': {
@@ -99,7 +110,7 @@ function typeToString(type: JSONOutput.SomeType | undefined): string {
     }
 
     case 'union': {
-      return type.types.map((type) => typeToString(type)).join(' | ');
+      return type.types.map((type) => someTypeToString(type)).join(' | ');
     }
 
     case 'unknown': {
@@ -111,4 +122,4 @@ function typeToString(type: JSONOutput.SomeType | undefined): string {
   }
 }
 
-export { typeToString };
+export { someTypeToString };
