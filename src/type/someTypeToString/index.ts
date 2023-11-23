@@ -1,0 +1,1 @@
+export { someTypeToString } from './someTypeToString';

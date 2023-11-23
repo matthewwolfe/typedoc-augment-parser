@@ -1,45 +1,27 @@
-import { child } from '@pkg/augmentations/child';
-import { nonNullable } from '@pkg/utils/nonNullable';
+import { setGlobalOptions } from '@pkg/config/global';
+import { findChildById } from '@pkg/project/findChildById';
+import { findChildByName } from '@pkg/project/findChildByName';
+import { groups } from '@pkg/project/groups';
 
 import type { JSONOutput } from 'typedoc';
+import type { GlobalOptions } from '@pkg/config/global';
+import type { AugmentedDeclaration } from '@pkg/types/declarations';
 
-function parse(project: JSONOutput.ProjectReflection) {
+function augment(
+  project: JSONOutput.ProjectReflection,
+  options: Partial<GlobalOptions> = {}
+) {
+  setGlobalOptions(options);
+
   return {
+    findChildById: findChildById(project),
     findChildByName: findChildByName(project),
-    groups: groups(project),
+    groups: () => groups(project),
     packageName: project.packageName,
     packageVersion: project.packageVersion,
   };
 }
 
-function findChildByName(project: JSONOutput.ProjectReflection) {
-  return function (name: string) {
-    const projectChild = project.children?.find((child) => child.name === name);
-
-    if (projectChild === undefined) {
-      return undefined;
-    }
-
-    return child(projectChild);
-  };
-}
-
-function groups(project: JSONOutput.ProjectReflection) {
-  return function () {
-    return (project.groups || []).map((group) => {
-      return {
-        title: group.title,
-        children: (group.children || [])
-          .map((id) =>
-            project.children?.find((projectChild) => projectChild.id === id)
-          )
-          .filter(nonNullable)
-          .map((projectChild) => child(projectChild)),
-      };
-    });
-  };
-}
-
 export const parser = {
-  parse,
+  augment,
 } as const;

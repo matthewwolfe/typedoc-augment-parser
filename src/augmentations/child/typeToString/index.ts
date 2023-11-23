@@ -1,1 +1,0 @@
-export { typeToString } from './typeToString';
