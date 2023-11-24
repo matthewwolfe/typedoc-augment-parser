@@ -1,0 +1,1 @@
+export { AntDesign } from './AntDesign';
