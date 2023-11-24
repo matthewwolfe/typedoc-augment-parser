@@ -1,7 +1,7 @@
-import { ReflectionKind } from 'typedoc';
 import { propertyToString } from '@pkg/properties';
 import { parametersToString, typeParametersToString } from '@pkg/parameters';
 import { someTypeToString } from '@pkg/type';
+import { ReflectionKind } from '@pkg/types/reflection';
 import { indent } from '@pkg/utils/indent';
 
 import type { JSONOutput } from 'typedoc';

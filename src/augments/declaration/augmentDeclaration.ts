@@ -1,8 +1,8 @@
-import { ReflectionKind } from 'typedoc';
 import { isDeprecated } from '@pkg/comments';
 import { declarationToString, isProperty } from '@pkg/declarations';
 import { propertyToString } from '@pkg/properties';
 import { someTypeToString } from '@pkg/type';
+import { ReflectionKind } from '@pkg/types/reflection';
 
 import type { JSONOutput } from 'typedoc';
 import type {

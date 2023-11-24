@@ -1,4 +1,4 @@
-import { ReflectionKind } from 'typedoc';
+import { ReflectionKind } from '@pkg/types/reflection';
 
 import type { JSONOutput } from 'typedoc';
 import type {
