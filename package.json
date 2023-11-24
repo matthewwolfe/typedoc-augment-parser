@@ -2,6 +2,10 @@
   "name": "typedoc-augment-parser",
   "version": "0.0.1",
   "description": "",
+  "files": [
+    "dist",
+    "package.json"
+  ],
   "type": "module",
   "exports": "./dist/index.js",
   "scripts": {
