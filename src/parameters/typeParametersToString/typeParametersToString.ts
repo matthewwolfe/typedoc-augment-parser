@@ -1,3 +1,4 @@
+import { someTypeToString } from '@pkg/type';
 import type { JSONOutput } from 'typedoc';
 
 function typeParametersToString(
@@ -8,7 +9,13 @@ function typeParametersToString(
   }
 
   const params = (typeParameters || [])
-    .map((parameter) => parameter.name)
+    .map((parameter) => {
+      if (!parameter.type) {
+        return parameter.name;
+      }
+
+      return `${parameter.name} extends ${someTypeToString(parameter.type)}`;
+    })
     .join(', ');
 
   return `<${params}>`;
