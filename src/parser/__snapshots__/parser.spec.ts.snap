@@ -8,7 +8,7 @@ exports[`parser > interface 1`] = `
   options?: DataDrivenOptionProps[];
   popupClassName?: string;
   rootClassName?: string;
-  status?: '' | 'error' | 'warning'
+  status?: '' | 'error' | 'warning';
 }"
 `;
 
@@ -18,7 +18,7 @@ exports[`parser > interface with nested properties 1`] = `
   children?: React.ReactNode;
   className?: string;
   classNames?: {
-    icon: string
+    icon: string;
   };
   danger?: boolean;
   disabled?: boolean;
@@ -27,22 +27,22 @@ exports[`parser > interface with nested properties 1`] = `
   htmlType?: 'button' | 'reset' | 'submit';
   icon?: React.ReactNode;
   loading?: boolean | {
-    delay?: number
+    delay?: number;
   };
   prefixCls?: string;
   rootClassName?: string;
   shape?: 'default' | 'circle' | 'round';
   size?: SizeType;
   styles?: {
-    icon: React.CSSProperties
+    icon: React.CSSProperties;
   };
-  type?: 'dashed' | 'default' | 'link' | 'text' | 'primary'
+  type?: 'dashed' | 'default' | 'link' | 'text' | 'primary';
 }"
 `;
 
 exports[`parser > type alias 1`] = `
 "MenuRef: {
-  focus: (options?: FocusOptions) => void,
-  menu: MenuRef | null
+  focus: (options?: FocusOptions) => void;
+  menu: MenuRef | null;
 }"
 `;

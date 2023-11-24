@@ -36,13 +36,14 @@ function declarationToString(
           `interface ${rootName} {`,
           declaration.children
             .filter((child) => !child.flags.isExternal)
-            .map((child) =>
-              declarationToString(child, {
-                indentCount: indentCount + 1,
-                rootName,
-              })
+            .map(
+              (child) =>
+                declarationToString(child, {
+                  indentCount: indentCount + 1,
+                  rootName,
+                }) + ';'
             )
-            .join(';\n'),
+            .join('\n'),
           '}',
         ].join('\n');
       }
@@ -68,13 +69,14 @@ function declarationToString(
         return [
           root,
           declaration.children
-            .map((child) =>
-              declarationToString(child, {
-                indentCount: indentCount + 1,
-                rootName,
-              })
+            .map(
+              (child) =>
+                declarationToString(child, {
+                  indentCount: indentCount + 1,
+                  rootName,
+                }) + ';'
             )
-            .join(',\n'),
+            .join('\n'),
           indent('}', indentCount),
         ].join('\n');
       }
