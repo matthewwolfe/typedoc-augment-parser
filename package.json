@@ -1,5 +1,5 @@
 {
-  "name": "@typedoc/augment-parser",
+  "name": "typedoc-augment-parser",
   "version": "0.0.0",
   "description": "",
   "type": "module",
