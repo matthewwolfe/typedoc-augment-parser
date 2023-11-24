@@ -4,17 +4,45 @@ exports[`parser > function 1`] = `"(props: MentionProps & RefAttributes<Mentions
 
 exports[`parser > interface 1`] = `
 "interface MentionProps {
-loading?: boolean;
-options?: DataDrivenOptionProps[];
-popupClassName?: string;
-rootClassName?: string;
-status?: '' | 'error' | 'warning'
+  loading?: boolean;
+  options?: DataDrivenOptionProps[];
+  popupClassName?: string;
+  rootClassName?: string;
+  status?: '' | 'error' | 'warning'
+}"
+`;
+
+exports[`parser > interface with nested properties 1`] = `
+"interface ButtonProps {
+  block?: boolean;
+  children?: React.ReactNode;
+  className?: string;
+  classNames?: {
+    icon: string
+  };
+  danger?: boolean;
+  disabled?: boolean;
+  ghost?: boolean;
+  href?: string;
+  htmlType?: 'button' | 'reset' | 'submit';
+  icon?: React.ReactNode;
+  loading?: boolean | {
+    delay?: number
+  };
+  prefixCls?: string;
+  rootClassName?: string;
+  shape?: 'default' | 'circle' | 'round';
+  size?: SizeType;
+  styles?: {
+    icon: React.CSSProperties
+  };
+  type?: 'dashed' | 'default' | 'link' | 'text' | 'primary'
 }"
 `;
 
 exports[`parser > type alias 1`] = `
 "MenuRef: {
-focus: (options?: FocusOptions) => void,
-menu: MenuRef | null
+  focus: (options?: FocusOptions) => void,
+  menu: MenuRef | null
 }"
 `;

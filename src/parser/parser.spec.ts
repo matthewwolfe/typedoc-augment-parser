@@ -22,6 +22,12 @@ describe('parser', () => {
     expect(child?.typeToString()).toMatchSnapshot();
   });
 
+  test('interface with nested properties', () => {
+    const child = parsed.findChildByName<InterfaceDeclaration>('ButtonProps');
+
+    expect(child?.typeToString()).toMatchSnapshot();
+  });
+
   test('type alias', () => {
     const child = parsed.findChildByName('MenuRef');
 

@@ -11,7 +11,7 @@ function someTypeToString(
   type: JSONOutput.SomeType | undefined,
   options?: Partial<Options>
 ): string {
-  const { indentCount = 0, rootName = '' } = options || {};
+  const { indentCount = 1, rootName = '' } = options || {};
 
   if (!type) {
     return '';

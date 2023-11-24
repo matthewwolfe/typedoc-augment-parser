@@ -13,8 +13,10 @@ interface Options {
 
 function declarationToString(
   declaration: JSONOutput.DeclarationReflection,
-  { indentCount = 0, rootName = '' }: Partial<Options> = {}
+  options?: Options
 ): string {
+  const { indentCount = 0, rootName = declaration.name } = options || {};
+
   switch (declaration.kind) {
     case ReflectionKind.Function: {
       return (declaration.signatures || [])
@@ -36,7 +38,7 @@ function declarationToString(
             .filter((child) => !child.flags.isExternal)
             .map((child) =>
               declarationToString(child, {
-                indentCount,
+                indentCount: indentCount + 1,
                 rootName,
               })
             )
@@ -61,17 +63,19 @@ function declarationToString(
 
     case ReflectionKind.TypeLiteral: {
       if (declaration.children) {
+        const root = rootName ? `${rootName}: {` : '{';
+
         return [
-          `${rootName}: {`,
+          root,
           declaration.children
             .map((child) =>
               declarationToString(child, {
-                indentCount,
+                indentCount: indentCount + 1,
                 rootName,
               })
             )
             .join(',\n'),
-          '}',
+          indent('}', indentCount),
         ].join('\n');
       }
 

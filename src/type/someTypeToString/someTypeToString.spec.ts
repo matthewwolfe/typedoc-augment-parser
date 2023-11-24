@@ -157,5 +157,53 @@ describe('typeToString', () => {
 
       expect(result).toEqual('[string | number, string | number]');
     });
+
+    test('nested', () => {
+      const result = someTypeToString({
+        type: 'reflection',
+        declaration: {
+          id: 423,
+          name: '__type',
+          variant: 'declaration',
+          kind: 65536,
+          flags: {},
+          children: [
+            {
+              id: 424,
+              name: 'icon',
+              variant: 'declaration',
+              kind: 1024,
+              flags: {},
+              sources: [
+                {
+                  fileName: 'Projects/ant-design/components/button/button.tsx',
+                  line: 47,
+                  character: 17,
+                  url: 'https://github.com/ant-design/ant-design/blob/d8d53f14c/components/button/button.tsx#L47',
+                },
+              ],
+              type: {
+                type: 'intrinsic',
+                name: 'string',
+              },
+            },
+          ],
+          groups: [
+            {
+              title: 'Properties',
+              children: [424],
+            },
+          ],
+          sources: [
+            {
+              fileName: 'Projects/ant-design/components/button/button.tsx',
+              line: 47,
+              character: 15,
+              url: 'https://github.com/ant-design/ant-design/blob/d8d53f14c/components/button/button.tsx#L47',
+            },
+          ],
+        },
+      });
+    });
   });
 });
