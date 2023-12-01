@@ -22,6 +22,7 @@ export interface InterfaceDeclaration extends Declaration {
 }
 
 export interface PropertyDeclaration extends Declaration {
+  commentToString: () => string;
   isDeprecated: () => boolean;
   toString: () => string;
 }
