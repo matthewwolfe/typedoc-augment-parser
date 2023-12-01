@@ -1,4 +1,8 @@
-import { commentToString, isDeprecated } from '@pkg/comments';
+import {
+  commentToString,
+  declarationCommentToString,
+  isDeprecated,
+} from '@pkg/comments';
 import { declarationToString, isProperty } from '@pkg/declarations';
 import { propertyToString } from '@pkg/properties';
 import { someTypeToString } from '@pkg/type';
@@ -39,6 +43,7 @@ function augmentDeclaration(
     case ReflectionKind.Function: {
       return {
         ...declaration,
+        commentToString: () => declarationCommentToString(declaration),
         isDeprecated: () => isDeprecated(declaration),
         typeToString: () => declarationToString(declaration),
       };

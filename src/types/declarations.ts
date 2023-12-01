@@ -12,6 +12,7 @@ interface Declaration extends JSONOutput.DeclarationReflection {
 export interface ClassDeclaration extends Declaration {}
 
 export interface FunctionDeclaration extends Declaration {
+  commentToString: () => string;
   isDeprecated: () => boolean;
 }
 

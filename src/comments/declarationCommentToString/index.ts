@@ -1,0 +1,1 @@
+export { declarationCommentToString } from './declarationCommentToString';

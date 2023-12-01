@@ -77,6 +77,13 @@ export const project: JSONOutput.ProjectReflection = {
           variant: 'signature',
           kind: 4096,
           flags: {},
+          comment: {
+            summary: [
+              { kind: 'text', text: 'This comment describes the ' },
+              { kind: 'code', text: '`chunk`' },
+              { kind: 'text', text: ' function' },
+            ],
+          },
           sources: [
             {
               fileName: 'utils/chunk/chunk.ts',
