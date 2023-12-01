@@ -1,0 +1,1 @@
+export { findSymbolById } from './findSymbolById';
