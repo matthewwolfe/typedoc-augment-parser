@@ -23,7 +23,9 @@ function declarationToString(
         .map((signature) => {
           const typeParams = typeParametersToString(signature.typeParameter);
           const params = parametersToString(signature.parameters);
-          const returnType = someTypeToString(signature.type);
+          const returnType = someTypeToString(signature.type, {
+            indentCount,
+          });
 
           return `${typeParams}(${params}) => ${returnType}`;
         })

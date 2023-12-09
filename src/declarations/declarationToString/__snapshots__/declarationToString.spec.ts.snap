@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`declarationToString > function return type 1`] = `
+"() => {
+  isError: boolean;
+  isFetching?: boolean;
+  isLoading?: boolean;
+  setData?: () => void;
+}"
+`;
