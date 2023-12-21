@@ -5,7 +5,7 @@ function commentToString(comment: AugmentedDeclaration['comment']): string {
     return '';
   }
 
-  return (comment.summary || []).map((summary) => summary.text).join('');
+  return comment.summary.map((summary) => summary.text).join('');
 }
 
 export { commentToString };

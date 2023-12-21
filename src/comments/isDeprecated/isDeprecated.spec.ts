@@ -44,6 +44,17 @@ describe('isDeprecated', () => {
     expect(isDeprecated(child)).toEqual(false);
   });
 
+  test('false when block tag is undefined', () => {
+    const child: Pick<AugmentedDeclaration, 'comment'> = {
+      comment: {
+        summary: [],
+        blockTags: undefined,
+      },
+    };
+
+    expect(isDeprecated(child)).toEqual(false);
+  });
+
   test('false when other tags', () => {
     const child: Pick<AugmentedDeclaration, 'comment'> = {
       comment: {
